@@ -16,7 +16,8 @@ void menu_print() {
         cout << "9. Найти количество элементов больше b.\n";
         cout << "10. Проверка наличия числа x в отсортированном массиве, а также сравнение перебора и бинарного поиска.\n";
         cout << "11. Поменять 2 элемента местами.\n";
-        cout << "12. Выход.\n";
+        cout << "12. Дополнительное задание (№1).\n";
+        cout << "13. Выход.\n";
         cout << ">";
 }
 
@@ -178,6 +179,32 @@ void array_swap(int *array, int A, int B) {
     cout << std::fixed << "Перестановка элементов завершена за: " << elapsed.count() << " сек.\n";
 }
 
+void sort_bubble_reverse(int *array, int N) {
+    for (int i = N - 1; i >= 1; i--)
+        for (int j=0; j < i; j++)
+            if (array[i] > array[j]) {
+                array[j] ^= array[i] ^= array[j] ^= array[i];
+            }
+}
+
+void additional(int *array, int N) {
+    for (int i = 0;  i < N; i++)
+        if (i == N -1) {array[i] += array[0];}
+        else {array[i] += array[i+1];}
+    cout << "Массив после преобразования (arr[i] += arr[i+1]): ";
+    array_output(array, N);
+    sort_bubble_reverse(array, N);
+    cout << "Массив после обатной сортировки: ";
+    array_output(array, N);
+    for (int i = 1; i < 10; i++) {
+        int count = 0;
+        for (int j = 0; j < N; j++)
+            if (array[j] % i == 0) {count++;}
+        printf("Делятся нацело на %d: %d элементов.\n", i, count);
+    }
+
+}
+
 int main() {
     const int n = 100;
     int choice, a = 0, b = 0, x = 0, swapA = 0, swapB = 0;
@@ -242,6 +269,12 @@ int main() {
             }
             break;
         case 12:
+            array_create(array_unsorted, 10);
+            cout << "Новый неотсортированный массив: ";
+            array_output(array_unsorted, 10);
+            additional(array_unsorted, 10);
+            break;
+        case 13:
             break;
         default:
             explicit_label:
@@ -251,7 +284,7 @@ int main() {
             array_output(array_sorted, n);
             break;
         }
-    } while (choice != 12);
+    } while (choice != 13);
 
     return 0;
 }
