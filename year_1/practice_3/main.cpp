@@ -68,7 +68,7 @@ int main(void) {
     cout << "Исходная матрица:\n";
     matrix_print((int *)matrix, n, end);
     cout << "Результат сдвига четвертей по часовой стрелке:\n";
-
+    sleep(1);
     for (int i = 0; i < n / 2; i++)
         for (int j = 0; j < n / 2; j++)
             *(matrix[i] + j) ^= *(matrix[i] + j + n / 2) ^= *(matrix[i] + j) ^= *(matrix[i] + j + n / 2);
@@ -81,7 +81,7 @@ int main(void) {
 
     matrix_print((int *)matrix, n, end);
     cout << "Результат сдвига четвертей по диагоналям:\n";
-
+    sleep(1);
     for (int i = 0; i < n / 2; i++)
         for (int j = 0; j < n / 2; j++)
             *(matrix[i] + j) ^= *(matrix[i + n / 2] + j + n / 2) ^= *(matrix[i] + j) ^= *(matrix[i + n / 2] + j + n / 2);
@@ -91,7 +91,7 @@ int main(void) {
 
     matrix_print((int *)matrix, n, end);
     cout << "Результат сдвига четвертей по горизонтали:\n";
-
+    sleep(1);
     for (int i = 0; i < n / 2; i++)
         for (int j = 0; j < n / 2; j++)
             *(matrix[i] + j) ^= *(matrix[i + n / 2] + j) ^= *(matrix[i] + j) ^= *(matrix[i  + n / 2] + j);
@@ -100,7 +100,7 @@ int main(void) {
             *(matrix[i] + j) ^= *(matrix[i - n / 2] + j) ^= *(matrix[i] + j) ^= *(matrix[i - n / 2] + j);
     matrix_print((int *)matrix, n, end);
     cout << "Результат сдвига четвертей по вертикали:\n";
-
+    sleep(1);
     for (int i = 0; i < n / 2; i++)
         for (int j = 0; j < n / 2; j++)
             *(matrix[i] + j) ^= *(matrix[i] + j + n / 2) ^= *(matrix[i] + j) ^= *(matrix[i] + j + n / 2);
@@ -109,15 +109,15 @@ int main(void) {
             *(matrix[i] + j) ^= *(matrix[i] + j - n / 2) ^= *(matrix[i] + j) ^= *(matrix[i] + j - n / 2);
     matrix_print((int *)matrix, n, end);
     cout << "Результат сортировки матрицы:\n";
-
+    sleep(1);
     for (int *p1 = matrix[0]; p1 <= end; p1++) {
-        for (int *p2 = matrix[0]; p2 <= end; p2++) {
+        for (int *p2 = matrix[0]; p2 < end; p2++) {
             if (*p2 > *(p2 + 1)) {
                 *p2 ^= *(p2 + 1) ^= *p2 ^= *(p2 + 1);
             }
         }
     }
-
+    sleep(1);
     matrix_print((int *)matrix, n, end);
     cout << "Введите множитель: ";
     cin >> k;
