@@ -606,7 +606,8 @@ void practice4() {
     const int n = 100;
     char text_edited[n]={}, choice, substring[n]={};
     char filename[n];
-    
+    system("clear");
+    cout << "Практическая работа №4 'Текстовые строки как массивы символов'\n\n";
     do {
         char *text_source = new char [n];
         cin.sync();
