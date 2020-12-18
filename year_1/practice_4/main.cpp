@@ -45,7 +45,7 @@ void str_del(int i, char *str) {
     }
 }
 
-int find_linear(char *sub, char *str)  
+int search_linear(char *sub, char *str)  
 {
 	for (int i = 0; str[i]; ++i) {
 		for (int j = 0; ; ++j) {
@@ -105,7 +105,7 @@ int main( void ) {
                 cout << text_source[i];
             cout << "\nПодстрока для поиска: ";
             cin >> substring;
-            int pos = find_linear(substring, text_source);
+            int pos = search_linear(substring, text_source);
             if (pos == -1) {
                 cout << "Подстрока не найдена.\n";
             } else {
