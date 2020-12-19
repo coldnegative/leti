@@ -1,7 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 void menu_print() {
         cout << "1. Ввести текст.\n";
@@ -46,7 +48,7 @@ void str_del(int i, char *str) {
 }
 
 int search_linear(char *sub, char *str)  
-{
+{  
 	for (int i = 0; str[i]; ++i) {
 		for (int j = 0; ; ++j) {
 			if (!sub[j]) return i;
@@ -55,10 +57,53 @@ int search_linear(char *sub, char *str)
 	}
 	return -1;
 }
+/*
+int *pre_kmp(string pattern)
+{
+    int size = pattern.size();
+    int *pi = new int[size];
+    pi[0] = 0;
+    int k = 0;
+    for (int i = 1; i < size; i++)
+    {
+        while (k > 0 && pattern[k] != pattern[i])
+        {
+            k = pi[k - 1];
+        }
+        if (pattern[k] == pattern[i])
+        {
+            k = k + 1;
+        }
+        pi[i] = k;
+    }
 
+    return pi;
+}
+
+void kmp(string text, string pattern)
+{
+    int* pi = pre_kmp(pattern);
+    int match = 0;
+    cout << "Индексы: ";
+    for (int current = 0; current < text.length(); current++)
+    {
+        while (match > 0 && pattern[match] != text[current])
+            match = pi[match - 1];
+
+        if (pattern[match] == text[current])
+            match = match + 1;
+
+        if (match == (pattern.length()))
+        {
+            cout << current - (pattern.length() - 1) << " ";
+            match = pi[match - 1];
+        }
+    }
+}
+*/
 int main( void ) {
     setlocale(LC_ALL, "Russian");
-    const int n = 100;
+    const int n = 1000;
     
     char text_edited[n]={}, choice, substring[n]={};
     char filename[n];
@@ -105,13 +150,24 @@ int main( void ) {
                 cout << text_source[i];
             cout << "\nПодстрока для поиска: ";
             cin >> substring;
+            auto startTime = chrono::high_resolution_clock::now();
             int pos = search_linear(substring, text_source);
+            auto endTime = chrono::high_resolution_clock::now();
+            chrono::duration<double> elapsed = endTime - startTime;
             if (pos == -1) {
                 cout << "Подстрока не найдена.\n";
             } else {
                 cout << "Подстрока найдена, позиция: " << pos << "\n";
             }
-
+            cout << std::fixed << "Линейный поиск: " << elapsed.count() << " сек.\n";
+/*
+            auto startTime = chrono::high_resolution_clock::now();
+            //search_kmp(a, sub);
+            auto endTime = chrono::high_resolution_clock::now();
+            chrono::duration<float> elapsed = endTime - startTime;
+            cout.precision(7);
+            cout << std::fixed << "КМП: " << elapsed.count() << " сек.\n";
+*/
             delete [] text_source;
             break;
         }

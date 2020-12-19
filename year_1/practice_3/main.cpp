@@ -124,5 +124,30 @@ int main(void) {
     for (int *ptr = matrix[0]; ptr <= end; ptr++)
         *ptr = *ptr * k;
     matrix_print((int *)matrix, n, end);
+
+    cout << "Дополнительное задание:\n";
+    int max = matrix[n-1][n-1];
+    cout << max << "\n";
+    int temp;
+    do {
+        for (int k = 0; k < n - 1; k++) {
+            temp = matrix[0][0];
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n - 1; j++)
+                    matrix[i][j] ^= matrix[i][j + 1] ^= matrix[i][j] ^= matrix[i][j + 1];
+            cout << "\n";
+            matrix_print((int *)matrix, n, end);
+        }
+        for (int k = 0; k < n - 1; k++) {
+            temp = matrix[0][0];
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n - 1; j++)
+                    matrix[j][i] ^= matrix[j + 1][i] ^= matrix[j][i] ^= matrix[j + 1][i];
+            cout << "\n";
+            matrix_print((int *)matrix, n, end);
+        }
+    } while (matrix[0][0] != max);
+    
+
     return 0;
 }
