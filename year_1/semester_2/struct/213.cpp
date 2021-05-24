@@ -28,6 +28,8 @@ int main( void ) {
         std::cout << Sum.Im << "i\n";
     } else if (Sum.Real != 0 & Sum.Im == 0) {
         std::cout << Sum.Real << "\n";
+    } else if (Sum.Real != 0 & Sum.Im < 0) {
+        std::cout << Sum.Real << " - " << -Sum.Im << "i\n";
     } else {
         std::cout << Sum.Real << " + " << Sum.Im << "i\n";
     };
@@ -37,6 +39,8 @@ int main( void ) {
         std::cout << Diff.Im << "i\n";
     } else if (Diff.Real != 0 & Diff.Im == 0) {
         std::cout << Diff.Real << "\n";
+    } else if (Diff.Real != 0 & Diff.Im < 0) {
+        std::cout << Diff.Real << " - " << -Diff.Im << "i\n";
     } else {
         std::cout << Diff.Real << " + " << Diff.Im << "i\n";
     };
@@ -46,6 +50,8 @@ int main( void ) {
         std::cout << Mult.Im << "i\n";
     } else if (Mult.Real != 0 & Mult.Im == 0) {
         std::cout << Mult.Real << "\n";
+    } else if (Mult.Real != 0 & Mult.Im < 0) {
+        std::cout << Mult.Real << " - " << -Mult.Im << "i\n";
     } else {
         std::cout << Mult.Real << " + " << Mult.Im << "i\n";
     };
@@ -55,6 +61,8 @@ int main( void ) {
         std::cout << Div.Im << "i\n";
     } else if (Div.Real != 0 & Div.Im == 0) {
         std::cout << Div.Real << "\n";
+    } else if (Div.Real != 0 & Div.Im < 0) {
+        std::cout << Div.Real << " - " << -Div.Im << "i\n";
     } else {
         std::cout << Div.Real << " + " << Div.Im << "i\n";
     };

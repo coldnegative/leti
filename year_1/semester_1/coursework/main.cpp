@@ -188,7 +188,7 @@ void sort_shaker(int *array, int N) {
     int i;
     auto startTime = system_clock::now();
     for (i = 0; i < N;) {
-        for (int j= i + 1; j < N; j++)
+        for (int j = i + 1; j < N; j++)
             if (array[j] < array[j - 1]) { array[j] ^= array[j - 1] ^= array[j] ^= array[j - 1]; }
         N--;
         for (int k = N - 1; k > i; k--)
