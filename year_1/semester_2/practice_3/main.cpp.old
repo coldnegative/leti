@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "PolishNotation.h"
+
+int main()
+{
+	try
+	{
+		const PolishNotation pObj("2*4/15+3");
+
+		std::vector<PolishNotation::Word> notation;
+
+		PolishNotation::NotationType type(pObj.getNativeNotationType());
+
+		switch (type)
+		{
+		case PolishNotation::NotationType::InvalidNotation:
+			std::cout << "Native notation type: Invalid notation" << std::endl;
+			break;
+		case PolishNotation::NotationType::Standart:
+			std::cout << "Native notation type: Standart" << std::endl;
+			break;
+
+		case PolishNotation::NotationType::PolishNotation:
+			std::cout << "Native notation type: Polish notation" << std::endl;
+			break;
+
+		case PolishNotation::NotationType::ReversePolishNotation:
+			std::cout << "Native notation type: Reverse polish notation" << std::endl;
+			break;
+
+		default:
+			std::cout << "Native notation type: Unknown" << std::endl;
+			break;
+		}
+
+		notation = pObj.getStandartNotation();
+		for (size_t i = 0; i < notation.size(); i++)
+		{
+			std::cout << notation[i].data << ' ';
+		}
+		std::cout << std::endl;
+
+		notation = pObj.getPolishNotation();
+		for (size_t i = 0; i < notation.size(); i++)
+		{
+			std::cout << notation[i].data << ' ';
+		}
+		std::cout << std::endl;
+
+		notation = pObj.getReversePolishNotation();
+		for (size_t i = 0; i < notation.size(); i++)
+		{
+			std::cout << notation[i].data << ' ';
+		}
+		std::cout << std::endl;
+
+		pObj.setFirstUnsetVariable(100);
+
+		std::cout << pObj.getCalculatedNotation() << std::endl;
+	}
+	catch (const std::exception& dfg)
+	{
+		std::cout << dfg.what() << std::endl;
+	}
+
+	return 0;
+}
